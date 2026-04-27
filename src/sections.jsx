@@ -68,17 +68,22 @@ function Hero({ lang }) {
 // ---------- About ----------
 function AboutSection({ lang }) {
   const d = CONTENT.about[lang];
-  const cta = CONTENT.about_cta[lang];
   return (
     <section className="section" id="about">
       <SectionHead eyebrow={d.eyebrow} title={d.title} size="large" />
       <div className="about-body">
         <div className="about-copy" data-reveal>
           {d.body}
-          <a className="about-member-link mono" href="members.html" data-reveal>
-            <span>MEMBER</span>
-            <span className="about-member-arrow">{cta.arrow}</span>
-          </a>
+          <div className="about-links" data-reveal>
+            <a className="about-member-link mono" href="members.html">
+              <span>MEMBER</span>
+              <span className="about-member-arrow">→</span>
+            </a>
+            <a className="about-member-link mono" href="value.html">
+              <span>VALUE</span>
+              <span className="about-member-arrow">→</span>
+            </a>
+          </div>
         </div>
         <div className="about-meta mono" data-reveal>
           <div>EST.</div>
