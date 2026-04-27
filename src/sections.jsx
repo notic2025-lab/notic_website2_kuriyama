@@ -68,17 +68,22 @@ function Hero({ lang }) {
 // ---------- About ----------
 function AboutSection({ lang }) {
   const d = CONTENT.about[lang];
-  const cta = CONTENT.about_cta[lang];
   return (
     <section className="section" id="about">
       <SectionHead eyebrow={d.eyebrow} title={d.title} size="large" />
       <div className="about-body">
         <div className="about-copy" data-reveal>
           {d.body}
-          <a className="about-member-link mono" href="members.html" data-reveal>
-            <span>MEMBER</span>
-            <span className="about-member-arrow">{cta.arrow}</span>
-          </a>
+          <div className="about-links" data-reveal>
+            <a className="about-member-link mono" href="members.html">
+              <span>MEMBER</span>
+              <span className="about-member-arrow">→</span>
+            </a>
+            <a className="about-member-link mono" href="value.html">
+              <span>VALUE</span>
+              <span className="about-member-arrow">→</span>
+            </a>
+          </div>
         </div>
         <div className="about-meta mono" data-reveal>
           <div>EST.</div>
@@ -218,16 +223,19 @@ function Footer({ lang }) {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-links">
-          {d.links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              target={l.href && l.href !== "#" ? "_blank" : undefined}
-              rel={l.href && l.href !== "#" ? "noopener noreferrer" : undefined}
-            >
-              {l.label}
-            </a>
-          ))}
+          {d.links.map((l) => {
+            const isExternal = /^https?:\/\//.test(l.href || "");
+            return (
+              <a
+                key={l.label}
+                href={l.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+              >
+                {l.label}
+              </a>
+            );
+          })}
         </div>
         <div className="footer-copy">{d.copy}</div>
       </div>
