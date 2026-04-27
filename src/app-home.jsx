@@ -97,6 +97,7 @@ function App() {
         <ServicesSection lang={lang} />
         <ProductsSection lang={lang} />
         <WorkSection lang={lang} />
+        <ValueSection lang={lang} />
         <ContactSection lang={lang} />
       </main>
       <Footer lang={lang} />

@@ -187,6 +187,31 @@ function WorkSection({ lang }) {
   );
 }
 
+// ---------- Value ----------
+function ValueSection({ lang }) {
+  const d = CONTENT.value[lang];
+  return (
+    <section className="section" id="value">
+      <SectionHead eyebrow={d.eyebrow} title={d.title} />
+      <div className="philo-cols">
+        {d.items.map((it) => (
+          <article className="philo-col" key={it.num} data-reveal>
+            <div className="mono">{it.num}</div>
+            <h3 className="philo-head serif">{it.title}</h3>
+            <p className="philo-body" style={{ whiteSpace: "pre-line" }}>{it.body}</p>
+          </article>
+        ))}
+      </div>
+      <div className="container" style={{ paddingBottom: 80 }}>
+        <a className="about-member-link mono" href="value.html" data-reveal>
+          <span>{d.cta}</span>
+          <span className="about-member-arrow">→</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 // ---------- Contact ----------
 function ContactSection({ lang }) {
   const d = CONTENT.contact[lang];
@@ -218,16 +243,19 @@ function Footer({ lang }) {
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-links">
-          {d.links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              target={l.href && l.href !== "#" ? "_blank" : undefined}
-              rel={l.href && l.href !== "#" ? "noopener noreferrer" : undefined}
-            >
-              {l.label}
-            </a>
-          ))}
+          {d.links.map((l) => {
+            const isExternal = /^https?:\/\//.test(l.href || "");
+            return (
+              <a
+                key={l.label}
+                href={l.href}
+                target={isExternal ? "_blank" : undefined}
+                rel={isExternal ? "noopener noreferrer" : undefined}
+              >
+                {l.label}
+              </a>
+            );
+          })}
         </div>
         <div className="footer-copy">{d.copy}</div>
       </div>
@@ -235,4 +263,4 @@ function Footer({ lang }) {
   );
 }
 
-Object.assign(window, { Hero, AboutSection, ServicesSection, ProductsSection, WorkSection, ContactSection, Footer });
+Object.assign(window, { Hero, AboutSection, ServicesSection, ProductsSection, WorkSection, ValueSection, ContactSection, Footer });
