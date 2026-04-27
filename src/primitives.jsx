@@ -87,7 +87,10 @@ function TopBar({ lang, setLang, accent, setAccent }) {
       return /(^|\/)(index\.html)?$/.test(path);
     } catch { return true; }
   })();
-  const navHref = (it) => isHome ? `#${it.id}` : `index.html#${it.id}`;
+  const navHref = (it) => {
+    if (it.id === "value") return "value.html";
+    return isHome ? `#${it.id}` : `index.html#${it.id}`;
+  };
 
   return (
     <header className={`topbar ${scrolled ? "is-scrolled" : ""}`}>
