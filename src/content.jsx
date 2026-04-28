@@ -47,15 +47,15 @@ const CONTENT = {
   about: {
     jp: {
       eyebrow: "N—01 / ABOUT",
-      title: "つくることで、\n社会に気づきを。",
+      title: "気づき、\nつくる。",
       body:
-        "NOTICは、滋賀県に拠点を置くクリエイティブチームです。\nコンピューテーショナルデザインと3Dプリンティングを主軸に、\n顧客の課題解決から、チーム発信で新たな価値を探るプロジェクトまでを手掛けています。\n\n理念は「notice and create」\n— 社会や顧客の中にある小さな違和感に気づき、つくることでかたちにする。\n\n私たちは、手を動かすことで思考を進める組織です。",
+        "NOTICは、滋賀県に拠点を置くクリエイティブチームです。\n3Dプリンティングとコンピュテーショナルデザインを軸に、\nかたちある価値をつくることで、人と社会に届けていきます。\n\n小さな違和感を見逃さない。\n異なる専門性を掛け算にする。\n手を動かすことで、答えを出す。\n\n得体の知れないものではなく、\n触れて、体験して、意味がわかるものをつくる。\nそれが、NOTICの在り方です。",
     },
     en: {
       eyebrow: "N—01 / ABOUT",
-      title: "Through making,\nawareness to society.",
+      title: "Notice,\nand make.",
       body:
-        "NOTIC is a creative team based in Shiga, Japan.\nCentered on computational design and 3D printing,\nwe work on everything from solving client challenges to projects that explore new value of our own making.\n\nOur principle is \"notice and create\"\n— we sense the small frictions within society and our clients, and give them form by making.\n\nWe are a team that thinks by making.",
+        "NOTIC is a creative team based in Shiga, Japan.\nCentered on 3D printing and computational design,\nwe deliver value that has form — something you can hold, experience, and believe in.\n\nWe don't let small frictions pass.\nWe multiply what's different.\nWe find answers by making.\n\nNot intangible promises.\nThings that can be touched, felt, and understood.\nThat's how we work.",
     },
   },
 
