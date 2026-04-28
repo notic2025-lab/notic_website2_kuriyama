@@ -13,16 +13,16 @@ const CONTENT = {
   nav: {
     jp: [
       { id: "about", label: "About", num: "01" },
-      { id: "technology", label: "Technology", num: "02" },
-      { id: "services", label: "Services", num: "03" },
+      { id: "services", label: "Services", num: "02" },
+      { id: "technology", label: "Technology", num: "03" },
       { id: "work", label: "Works", num: "04" },
       { id: "contact", label: "Contact", num: "05" },
       { id: "value", label: "Value", num: "06" },
     ],
     en: [
       { id: "about", label: "About", num: "01" },
-      { id: "technology", label: "Technology", num: "02" },
-      { id: "services", label: "Services", num: "03" },
+      { id: "services", label: "Services", num: "02" },
+      { id: "technology", label: "Technology", num: "03" },
       { id: "work", label: "Works", num: "04" },
       { id: "contact", label: "Contact", num: "05" },
       { id: "value", label: "Value", num: "06" },

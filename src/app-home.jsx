@@ -94,8 +94,8 @@ function App() {
         <Hero lang={lang} />
         <Marquee items={CONTENT.ticker[lang]} />
         <AboutSection lang={lang} />
-        <ServicesSection lang={lang} />
         <ProductsSection lang={lang} />
+        <ServicesSection lang={lang} />
         <WorkSection lang={lang} />
         <ValueSection lang={lang} />
         <ContactSection lang={lang} />
