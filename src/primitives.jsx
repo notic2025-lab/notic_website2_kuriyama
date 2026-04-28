@@ -92,6 +92,22 @@ function TopBar({ lang, setLang, accent, setAccent }) {
     return isHome ? `#${it.id}` : `index.html#${it.id}`;
   };
 
+  const getSubItems = (id) => {
+    if (id === "services") {
+      return CONTENT.products[lang].items.map((s) => ({
+        label: s.name,
+        href: `products.html?p=${s.id}`,
+      }));
+    }
+    if (id === "technology") {
+      return CONTENT.services[lang].items.map((s) => ({
+        label: s.title,
+        href: `services.html?s=${s.id}`,
+      }));
+    }
+    return null;
+  };
+
   return (
     <header className={`topbar ${scrolled ? "is-scrolled" : ""}`}>
       <div className="topbar-inner container">
@@ -100,16 +116,26 @@ function TopBar({ lang, setLang, accent, setAccent }) {
         </a>
 
         <nav className="topnav">
-          {items.map((it) => (
-            <a
-              key={it.id}
-              href={navHref(it)}
-              className="topnav-link"
-            >
-              <span className="mono nav-num">{it.num}</span>
-              <span>{it.label}</span>
-            </a>
-          ))}
+          {items.map((it) => {
+            const subItems = getSubItems(it.id);
+            return (
+              <div key={it.id} className={`topnav-item${subItems ? " has-dropdown" : ""}`}>
+                <a href={navHref(it)} className="topnav-link">
+                  <span className="mono nav-num">{it.num}</span>
+                  <span>{it.label}</span>
+                </a>
+                {subItems && (
+                  <div className="topnav-dropdown" role="menu">
+                    {subItems.map((sub) => (
+                      <a key={sub.href} href={sub.href} className="topnav-dropdown-item" role="menuitem">
+                        {sub.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
         <div className="topbar-end">
