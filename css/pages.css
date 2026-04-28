@@ -751,7 +751,7 @@
 /* ================ WHY ================ */
 .qc-why-wrap {
   display: grid;
-  grid-template-columns: 200px 1fr 1fr;
+  grid-template-columns: 200px 1fr;
   gap: 0 40px;
 }
 .qc-why-list {

@@ -66,16 +66,9 @@ function ProductConcept({ product }) {
         <div className="mono qc-section-label" data-reveal>CONCEPT</div>
         <div className="qc-concept-body" data-reveal>
           {d.concept.split("\n\n").map((para, i) => (
-            <p key={i} className="qc-concept-para serif">{para.replace(/\n/g, "​\n")}</p>
+            <p key={i} className="qc-concept-para serif">{para}</p>
           ))}
         </div>
-        {d.conceptEn && (
-          <div className="qc-concept-en" data-reveal>
-            {d.conceptEn.split("\n\n").map((para, i) => (
-              <p key={i} className="qc-concept-para-en">{para}</p>
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );
@@ -85,7 +78,7 @@ function ProductConcept({ product }) {
 function ProductWhy({ lang, product }) {
   const d = product.detail;
   if (!d?.why) return null;
-  const label = lang === "jp" ? "WHY Q-CUBE / 特徴" : "WHY Q-CUBE / 特徴";
+  const label = lang === "jp" ? "WHY Q-CUBE / 特徴" : "WHY Q-CUBE";
   return (
     <section className="section qc-section">
       <div className="container qc-why-wrap">
@@ -98,16 +91,6 @@ function ProductWhy({ lang, product }) {
             </li>
           ))}
         </ul>
-        {d.whyEn && (
-          <ul className="qc-why-list qc-why-list-en">
-            {d.whyEn.map((item, i) => (
-              <li key={i} className="qc-why-item" data-reveal>
-                <span className="qc-why-bullet">-</span>
-                <span className="qc-why-text-en">{item}</span>
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </section>
   );
