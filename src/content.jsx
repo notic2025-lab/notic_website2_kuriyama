@@ -61,7 +61,7 @@ const CONTENT = {
 
   services: {
     jp: {
-      eyebrow: "N—02 / TECHNOLOGY",
+      eyebrow: "N—03 / TECHNOLOGY",
       title: "わたしたちに\nできること",
       items: [
         {
@@ -127,7 +127,7 @@ const CONTENT = {
       ],
     },
     en: {
-      eyebrow: "N—02 / TECHNOLOGY",
+      eyebrow: "N—03 / TECHNOLOGY",
       title: "What we do",
       items: [
         {
@@ -196,7 +196,7 @@ const CONTENT = {
 
   products: {
     jp: {
-      eyebrow: "N—03 / SERVICES",
+      eyebrow: "N—02 / SERVICES",
       title: "わたしたちが\nつくったもの",
       items: [
         {
@@ -265,7 +265,7 @@ const CONTENT = {
       ],
     },
     en: {
-      eyebrow: "N—03 / SERVICES",
+      eyebrow: "N—02 / SERVICES",
       title: "What we make",
       items: [
         {
