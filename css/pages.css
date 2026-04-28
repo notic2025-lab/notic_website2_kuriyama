@@ -981,3 +981,416 @@
   border-top: var(--rule);
   padding: 40px 0;
 }
+
+/* ================================================================
+   Art Panel — Design cards grid
+   ================================================================ */
+.ap-designs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  margin-top: 40px;
+}
+.ap-design-card {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-right: 1px solid var(--line);
+  padding: 0;
+  background: var(--bg);
+}
+.ap-design-card:nth-child(3n) { border-right: none; }
+
+.ap-design-ph {
+  aspect-ratio: 4/3;
+  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.ap-design-ph::after {
+  content: "[ image ]";
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+}
+.ap-design-ph-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.ap-design-ph-name {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+.ap-design-card-body {
+  padding: 20px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.ap-design-names {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.ap-design-name {
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.ap-design-jp {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.ap-design-desc {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0;
+}
+.ap-design-price {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+/* Custom banner (bottom of designs grid) */
+.ap-custom-banner {
+  margin-top: 1px;
+  border: 1px solid var(--line);
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  background: var(--bg-2);
+}
+.ap-custom-banner-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ap-custom-banner-name {
+  font-size: 15px;
+  white-space: nowrap;
+}
+.ap-custom-banner-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+.ap-custom-banner-tag {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  white-space: nowrap;
+  border: 1px solid var(--line);
+  padding: 5px 12px;
+}
+
+/* ================================================================
+   Art Panel — Process steps
+   ================================================================ */
+.ap-process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: var(--rule);
+  margin-top: 40px;
+}
+.ap-process-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: var(--rule);
+}
+.ap-process-num {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.ap-process-body { display: flex; flex-direction: column; gap: 10px; }
+.ap-process-title {
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+.ap-process-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ================================================================
+   Art Panel — Order simulator
+   ================================================================ */
+.ap-order-section { background: var(--bg-2); }
+.ap-order-lead {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 16px 0 0;
+}
+.ap-order-step {
+  margin-top: 60px;
+  border-top: var(--rule);
+  padding-top: 36px;
+}
+.ap-order-step-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.ap-step-num {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+.ap-step-title {
+  font-size: 20px;
+  letter-spacing: 0.02em;
+}
+
+/* Design selector grid */
+.ap-sim-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+.ap-sim-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  transition: background .2s;
+}
+.ap-sim-card:hover { background: color-mix(in oklch, var(--bg-2) 60%, var(--bg)); }
+.ap-sim-card.is-selected {
+  background: var(--ink);
+  color: var(--bg);
+}
+.ap-sim-ph {
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  background: var(--bg-2);
+}
+.ap-sim-card.is-selected .ap-sim-ph {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.4);
+}
+.ap-sim-card-body { padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 4px; }
+.ap-sim-card-name { font-size: 14px; letter-spacing: 0.04em; }
+.ap-sim-card-jp {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.ap-sim-card.is-selected .ap-sim-card-jp { color: rgba(255,255,255,0.5); }
+.ap-sim-card-price {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-top: 6px;
+}
+.ap-sim-card.is-selected .ap-sim-card-price { color: var(--bg); }
+
+/* Custom row button */
+.ap-custom-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 1px;
+  padding: 20px 20px;
+  border: 1px solid var(--line);
+  border-top: none;
+  background: var(--bg);
+  cursor: pointer;
+  text-align: left;
+  transition: background .2s, border-color .2s;
+}
+.ap-custom-row:hover { background: var(--bg-2); }
+.ap-custom-row.is-selected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+.ap-custom-row-tag {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.ap-custom-row.is-selected .ap-custom-row-tag { color: rgba(255,255,255,0.5); }
+.ap-custom-row-text {
+  font-size: 13px;
+  flex: 1;
+}
+.ap-custom-row-arrow {
+  font-size: 14px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.ap-custom-row.is-selected .ap-custom-row-arrow { color: var(--bg); }
+
+/* Logo toggle */
+.ap-toggle-row { display: flex; gap: 12px; }
+.ap-toggle-btn {
+  padding: 12px 28px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+  color: var(--ink);
+}
+.ap-toggle-btn:hover { background: var(--bg-2); }
+.ap-toggle-btn.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+/* Size inputs */
+.ap-order-note {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.ap-size-inputs {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.ap-size-field { display: flex; flex-direction: column; gap: 8px; }
+.ap-size-label { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
+.ap-size-input-row { display: flex; align-items: center; gap: 10px; }
+.ap-size-input {
+  width: 80px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.ap-size-input::-webkit-inner-spin-button,
+.ap-size-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.ap-size-input:focus { outline: 1px solid var(--ink); }
+.ap-size-mm { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+.ap-size-times {
+  font-size: 18px;
+  color: var(--muted);
+  padding-bottom: 2px;
+}
+.ap-size-total {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 16px 0 0;
+}
+
+/* Result box */
+.ap-result {
+  margin-top: 48px;
+  border: 1px solid var(--line-strong, var(--ink));
+  padding: 32px 36px;
+  background: var(--bg);
+}
+.ap-result-head {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.ap-result-rows { display: flex; flex-direction: column; gap: 0; }
+.ap-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  gap: 24px;
+}
+.ap-result-total {
+  border-bottom: none;
+  padding-top: 20px;
+  font-size: 17px;
+}
+.ap-result-note {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+.ap-custom-quote-note {
+  font-size: 17px;
+  line-height: 1.85;
+  margin: 0;
+}
+
+/* CTA */
+.ap-order-cta {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* ================================================================
+   Art Panel — Responsive
+   ================================================================ */
+@media (max-width: 900px) {
+  .ap-designs-grid { grid-template-columns: repeat(2, 1fr); }
+  .ap-sim-grid { grid-template-columns: repeat(2, 1fr); }
+  .ap-custom-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ap-custom-banner-body { flex-direction: column; gap: 8px; }
+}
+@media (max-width: 600px) {
+  .ap-designs-grid { grid-template-columns: 1fr; }
+  .ap-design-card { border-right: none; }
+  .ap-sim-grid { grid-template-columns: 1fr; }
+  .ap-process-step { grid-template-columns: 1fr; gap: 8px; }
+  .ap-size-inputs { flex-direction: column; align-items: flex-start; }
+  .ap-size-times { display: none; }
+  .ap-result { padding: 24px 20px; }
+  .ap-toggle-row { flex-direction: column; }
+  .ap-toggle-btn { width: 100%; }
+}
