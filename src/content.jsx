@@ -197,7 +197,7 @@ const CONTENT = {
   products: {
     jp: {
       eyebrow: "N—02 / SERVICES",
-      title: "わたしたちが\nつくったもの",
+      title: "わたしたちが\nつくっているもの",
       items: [
         {
           id: "q-cube",
@@ -699,14 +699,26 @@ const CONTENT = {
       title: "お気づきのことを、\n聞かせてください。",
       body: "課題・構想・雑談、いずれも歓迎します。",
       email: "contact.notic2026@gmail.com",
-      cta: "お問い合わせ →",
+      reply: "通常、2営業日以内にご返信いたします。",
+      cta: "メールを送る →",
+      info: [
+        { label: "TEL", value: "077-123-4567" },
+        { label: "所在地", value: "滋賀県大津市浜町 1-1-1" },
+        { label: "営業時間", value: "10:00 - 18:00（土日祝を除く）" },
+      ],
     },
     en: {
       eyebrow: "N—05 / CONTACT",
       title: "Tell us what\nyou've noticed.",
       body: "Briefs, ideas, or a quick conversation — all welcome.",
       email: "contact.notic2026@gmail.com",
-      cta: "Get in touch →",
+      reply: "We usually reply within 2 business days.",
+      cta: "Send an email →",
+      info: [
+        { label: "TEL", value: "077-123-4567" },
+        { label: "Address", value: "1-1-1 Hamacho, Otsu, Shiga" },
+        { label: "Hours", value: "10:00 - 18:00 (Mon–Fri)" },
+      ],
     },
   },
 

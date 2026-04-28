@@ -234,7 +234,16 @@ function ContactSection({ lang }) {
           <a className="contact-email" href={`mailto:${d.email}`}>
             {d.email} <span>↗</span>
           </a>
+          <p className="contact-reply">{d.reply}</p>
           <a className="contact-btn" href="contact.html">{d.cta}</a>
+          <div className="contact-info-rows">
+            {d.info.map((row) => (
+              <div className="contact-info-row" key={row.label}>
+                <span className="contact-info-row-label mono">{row.label}</span>
+                <span className="contact-info-row-value">{row.value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
