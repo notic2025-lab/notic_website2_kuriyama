@@ -71,7 +71,7 @@ function useAccent(initial = "red") {
 
 // ---------- Nav ----------
 function TopBar({ lang, setLang, accent, setAccent }) {
-  const items = CONTENT.nav[lang];
+  const items = CONTENT.nav[lang].filter((it) => it.id !== "value");
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
