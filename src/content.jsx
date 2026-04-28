@@ -480,6 +480,67 @@ const CONTENT = {
     },
   },
 
+  value: {
+    jp: {
+      eyebrow: "N—06 / VALUE",
+      title: "大切にすること",
+      lead: "違いに気づき、つくることで価値に変える。\nNOTICが日々の判断で大切にしている姿勢です。",
+      items: [
+        {
+          num: "V—01",
+          title: "掛け算で、可能性を拡張する。",
+          body: "違いを活かすことで「掛け算」が始まる。\n異なる専門性・視点・背景を持つ人との出会いを大切にし、\nひとりでは届かない場所へ、一緒にたどり着く。",
+          enTitle: "Multiply possibilities.",
+          enBody: "Difference is where the multiplication begins.\nWe value every encounter — different skills, perspectives, backgrounds —\nand reach places together that neither of us could alone.",
+        },
+        {
+          num: "V—02",
+          title: "ひらめきを大切に。（Notice）",
+          body: "気づくことで始まる。\n小さな違和感を見逃さず、そこからアイデアを引き出す。\n常に独創的で、オリジナルであり続ける。",
+          enTitle: "Stay curious. Notice.",
+          enBody: "We believe everything starts with noticing.\nWe don’t let small frictions pass — we pull ideas from them.\nAlways original. Always our own.",
+        },
+        {
+          num: "V—03",
+          title: "つくることで、解決する。（Create）",
+          body: "かたちのある価値を届けたい。\n実体のないものではなく、手に取れる、体験できる、\n本当に意味のあるものをつくることで、\nお客様とエンドユーザー、双方を幸せにする。",
+          enTitle: "Solve it by making.",
+          enBody: "We want to deliver value you can hold.\nNot intangible promises — but things you can touch, experience, and believe in.\nMade well enough to make both our clients and their users genuinely happy.",
+        },
+      ],
+      cta: "Valueページへ",
+    },
+    en: {
+      eyebrow: "N—06 / VALUE",
+      title: "What we value",
+      lead: "By noticing differences and shaping them through making,\nwe turn friction into real value.",
+      items: [
+        {
+          num: "V—01",
+          title: "Multiply possibilities.",
+          body: "Difference is where the multiplication begins.\nWe value every encounter — different skills, perspectives, backgrounds —\nand reach places together that neither of us could alone.",
+          enTitle: "Multiply possibilities.",
+          enBody: "Difference is where the multiplication begins.\nWe value every encounter — different skills, perspectives, backgrounds —\nand reach places together that neither of us could alone.",
+        },
+        {
+          num: "V—02",
+          title: "Stay curious. Notice.",
+          body: "We believe everything starts with noticing.\nWe don’t let small frictions pass — we pull ideas from them.\nAlways original. Always our own.",
+          enTitle: "Stay curious. Notice.",
+          enBody: "We believe everything starts with noticing.\nWe don’t let small frictions pass — we pull ideas from them.\nAlways original. Always our own.",
+        },
+        {
+          num: "V—03",
+          title: "Solve it by making.",
+          body: "We want to deliver value you can hold.\nNot intangible promises — but things you can touch, experience, and believe in.\nMade well enough to make both our clients and their users genuinely happy.",
+          enTitle: "Solve it by making.",
+          enBody: "We want to deliver value you can hold.\nNot intangible promises — but things you can touch, experience, and believe in.\nMade well enough to make both our clients and their users genuinely happy.",
+        },
+      ],
+      cta: "Go to Value page",
+    },
+  },
+
   members: {
     jp: {
       eyebrow: "N—01.5 / MEMBERS",
@@ -651,6 +712,7 @@ const CONTENT = {
     jp: {
       copy: "© 2026 NOTIC",
       links: [
+        { label: "Value", href: "value.html" },
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
       ],
@@ -658,6 +720,7 @@ const CONTENT = {
     en: {
       copy: "© 2026 NOTIC",
       links: [
+        { label: "Value", href: "value.html" },
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
       ],
