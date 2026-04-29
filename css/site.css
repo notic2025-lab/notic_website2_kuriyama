@@ -139,7 +139,12 @@
 
 @media (max-width: 860px) {
   .topnav { display: none; }
-  .topbar-inner { grid-template-columns: auto 1fr auto; }
+  .topbar-inner {
+    grid-template-columns: auto 1fr auto;
+    gap: 0;
+  }
+  .brand-logo { width: 80px; }
+  .topbar-end { gap: 12px; }
 }
 
 /* ---------- Hamburger button ---------- */
@@ -550,7 +555,7 @@ section#value { display: none !important; }
 .work-marquee-track--rev {
   animation: work-scroll-rev 55s linear infinite;
 }
-.work-marquee:hover .work-marquee-track {
+.work-marquee-track:hover {
   animation-play-state: paused;
 }
 @keyframes work-scroll {
