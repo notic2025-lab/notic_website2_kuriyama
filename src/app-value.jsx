@@ -4,7 +4,7 @@ function ValueHero({ lang }) {
   return (
     <section className="hero" id="top" style={{ minHeight: "auto", paddingBottom: 80 }}>
       <div className="hero-topline">
-        <div className="mono">N—06 / VALUE</div>
+        <div className="mono">VALUE</div>
         <div className="hero-topline-mid">
           <a href="index.html" className="mono">← INDEX</a>
         </div>
@@ -21,7 +21,7 @@ function ValueHero({ lang }) {
         </h1>
         <aside className="hero-side" data-reveal>
           <div className="mono hero-side-label">{lang === "jp" ? "STATEMENT" : "STATEMENT"}</div>
-          <p className="hero-side-body" style={{ whiteSpace: "pre-line" }}>{d.lead}</p>
+          <p className="hero-side-body">{d.lead}</p>
         </aside>
       </div>
     </section>
@@ -39,8 +39,6 @@ function ValueRows({ lang }) {
             <div>
               <h3 className="timeline-t" style={{ margin: 0 }}>{it.title}</h3>
               <p className="philo-body" style={{ whiteSpace: "pre-line", maxWidth: "none", marginTop: 14 }}>{it.body}</p>
-              <h4 className="serif" style={{ fontSize: "clamp(24px, 2.2vw, 32px)", margin: "28px 0 10px", fontWeight: 400 }}>{it.enTitle}</h4>
-              <p className="philo-body" style={{ whiteSpace: "pre-line", maxWidth: "none" }}>{it.enBody}</p>
             </div>
           </article>
         ))}

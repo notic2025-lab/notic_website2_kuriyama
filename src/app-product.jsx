@@ -14,6 +14,7 @@ function getProductIdFromURL() {
 function ProductHero({ lang, product, idx, total }) {
   const parent = CONTENT.products[lang];
   const d = product.detail;
+  const hasSimulator = !!d?.designs;
   return (
     <section className="hero" id="top" style={{ minHeight: "auto", paddingBottom: 40 }}>
       <div className="hero-topline">
@@ -32,6 +33,13 @@ function ProductHero({ lang, product, idx, total }) {
           )}
           {d?.taglineSub && (
             <p className="product-hero-tagline-sub" data-reveal>{d.taglineSub}</p>
+          )}
+          {hasSimulator && (
+            <a href="#simulator" className="ap-hero-sim-btn" data-reveal>
+              <span className="ap-hero-sim-badge mono">3 STEPS</span>
+              <span>{lang === "jp" ? "今すぐ簡単お見積もり" : "Get an instant estimate"}</span>
+              <span className="mono">↓</span>
+            </a>
           )}
         </div>
       </div>
@@ -306,6 +314,20 @@ function ArtPanelPricing({ lang, product }) {
             ? "※価格はすべて税別。パターン・ロット・設置状況により変動します。"
             : "※ All prices ex. tax. Varies by pattern, quantity, and installation scope."}
         </p>
+        <div className="ap-option-block" data-reveal>
+          <div className="mono ap-option-label">
+            {lang === "jp" ? "OPTION / ライティング" : "OPTION / Lighting"}
+          </div>
+          <p className="ap-option-body">
+            {lang === "jp"
+              ? "パネルにライティングを組み合わせることで、夜間・暗所での演出や、昼夜で異なる表情をつくることができます。"
+              : "Pair the panel with lighting to create evening and low-light effects, or to give the panel a different presence by day and by night."}
+          </p>
+          <ul className="ap-option-list">
+            <li className="ap-option-item">· {lang === "jp" ? "設置環境・演出イメージをヒアリングのうえ、個別にご提案" : "We propose a setup after briefing on environment and intent"}</li>
+            <li className="ap-option-item">· {lang === "jp" ? "料金はヒアリング後のお見積もりとなります" : "Pricing is quoted following consultation"}</li>
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -343,8 +365,8 @@ function ArtPanelOrderFlow({ lang, product }) {
 
   const [selectedId, setSelectedId] = useStP(null);
   const [hasLogo, setHasLogo] = useStP(null);
-  const [panelsW, setPanelsW] = useStP("");
-  const [panelsH, setPanelsH] = useStP("");
+  const [panelsW, setPanelsW] = useStP(2);
+  const [panelsH, setPanelsH] = useStP(2);
 
   const t = (jp, en) => lang === "jp" ? jp : en;
   const LOGO_PRICE = 15000;
@@ -354,193 +376,200 @@ function ArtPanelOrderFlow({ lang, product }) {
   const selected = designs.find((x) => x.id === selectedId);
   const isCustom = selectedId === "custom";
 
-  const w = parseInt(panelsW) || 0;
-  const h = parseInt(panelsH) || 0;
-  const totalPanels = w * h;
+  const adjW = (delta) => setPanelsW((p) => Math.min(20, Math.max(1, p + delta)));
+  const adjH = (delta) => setPanelsH((p) => Math.min(20, Math.max(1, p + delta)));
+
+  const totalPanels = panelsW * panelsH;
   const panelSubtotal = selected?.pricePerPanel ? selected.pricePerPanel * totalPanels : 0;
-  const logoSubtotal = hasLogo ? LOGO_PRICE : 0;
-  const grandTotal = panelSubtotal + logoSubtotal;
+  const grandTotal = panelSubtotal + (hasLogo ? LOGO_PRICE : 0);
 
-  const showStep2 = !!selectedId;
-  const showStep3 = showStep2 && hasLogo !== null && !isCustom;
-  const showResult = showStep3 && totalPanels > 0;
-
-  const sectionLabel = t("ORDER SIMULATOR / 簡単お見積もり", "ORDER SIMULATOR");
+  const step2Active = !!selectedId && !isCustom;
+  const step3Active = step2Active && hasLogo !== null;
+  const resultReady = step3Active;
 
   return (
-    <section className="section ap-order-section">
+    <section className="section ap-order-section" id="simulator">
       <div className="container">
-        <div className="mono qc-section-label" data-reveal>{sectionLabel}</div>
+        <div className="mono qc-section-label" data-reveal>
+          {t("ORDER SIMULATOR / 簡単お見積もり", "ORDER SIMULATOR")}
+        </div>
         <p className="ap-order-lead" data-reveal>
           {t(
-            "パネルを選んで、ざっくりとした金額感を確認できます。詳細はお気軽にご相談ください。",
-            "Pick a panel and get a rough estimate. For the full picture, just reach out."
+            "3ステップで概算が出ます。デザイン · ロゴ · サイズを選ぶだけ。",
+            "Three steps to a rough estimate — design, logo, size."
           )}
         </p>
 
-        {/* STEP 01 */}
-        <div className="ap-order-step" data-reveal>
-          <div className="ap-order-step-head">
-            <span className="mono ap-step-num">STEP 01</span>
-            <span className="ap-step-title serif">{t("デザインを選ぶ", "Choose a design")}</span>
-          </div>
-          <div className="ap-sim-grid">
-            {standard.map((des) => (
-              <button
-                key={des.id}
-                className={`ap-sim-card${selectedId === des.id ? " is-selected" : ""}`}
-                onClick={() => setSelectedId(des.id)}
-              >
-                <div className="ap-sim-ph mono">{des.name}</div>
-                <div className="ap-sim-card-body">
-                  <div className="ap-sim-card-name serif">{des.name}</div>
-                  <div className="ap-sim-card-jp mono">{des.jp}</div>
-                  <div className="ap-sim-card-price mono">
-                    ¥{des.pricePerPanel.toLocaleString()}{t("/枚〜", "/panel")}
+        {/* ── 2-COLUMN LAYOUT ── */}
+        <div className="ap-sim-layout" data-reveal>
+
+          {/* LEFT: STEP 01 — Design picker */}
+          <div className="ap-sim-left">
+            <div className="ap-flow-label">
+              <span className="mono ap-step-num">STEP 01</span>
+              <span className="ap-step-title serif">{t("デザインを選ぶ", "Choose a design")}</span>
+            </div>
+            <div className="ap-sim-grid">
+              {designs.map((des) => (
+                <button
+                  key={des.id}
+                  className={`ap-sim-card${selectedId === des.id ? " is-selected" : ""}${des.id === "custom" ? " is-custom-card" : ""}`}
+                  onClick={() => { setSelectedId(des.id); setHasLogo(null); }}
+                >
+                  <div className="ap-sim-ph">{des.name}</div>
+                  <div className="ap-sim-card-body">
+                    <div className="ap-sim-card-name serif">{des.name}</div>
+                    <div className="ap-sim-card-jp mono">{des.jp}</div>
+                    <div className="ap-sim-card-price mono">
+                      {des.pricePerPanel
+                        ? `¥${des.pricePerPanel.toLocaleString()}${t("/枚〜", "/panel")}`
+                        : t("別途お見積もり", "Quote on request")}
+                    </div>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              ))}
+            </div>
           </div>
-          {custom && (
-            <button
-              className={`ap-custom-row${selectedId === "custom" ? " is-selected" : ""}`}
-              onClick={() => setSelectedId("custom")}
-            >
-              <span className="mono ap-custom-row-tag">+ CUSTOM</span>
-              <span className="ap-custom-row-text">{t("オリジナルデザイン（別途お見積もり）", "Original design (quote on request)")}</span>
-              <span className="mono ap-custom-row-arrow">→</span>
-            </button>
-          )}
+
+          {/* RIGHT: STEPS 02 + 03 + RESULT */}
+          <div className="ap-sim-right">
+
+            {/* STEP 02 */}
+            <div className={`ap-sim-right-step${step2Active ? "" : " is-dim"}`}>
+              <div className="ap-flow-label">
+                <span className="mono ap-step-num">STEP 02</span>
+                <span className="ap-step-title serif">{t("ロゴ・文字入れ", "Logo / lettering")}</span>
+              </div>
+              <div className="ap-choice-row">
+                <button
+                  className={`ap-choice-card${hasLogo === true ? " is-selected" : ""}`}
+                  onClick={() => step2Active && setHasLogo(true)}
+                >
+                  <span className="ap-choice-mark mono">+</span>
+                  <span className="ap-choice-main serif">{t("あり", "Yes")}</span>
+                  <span className="ap-choice-sub mono">+¥15,000〜</span>
+                </button>
+                <button
+                  className={`ap-choice-card${hasLogo === false ? " is-selected" : ""}`}
+                  onClick={() => step2Active && setHasLogo(false)}
+                >
+                  <span className="ap-choice-mark mono">—</span>
+                  <span className="ap-choice-main serif">{t("なし", "No")}</span>
+                  <span className="ap-choice-sub mono">±¥0</span>
+                </button>
+              </div>
+            </div>
+
+            {/* STEP 03 */}
+            <div className={`ap-sim-right-step${step3Active ? "" : " is-dim"}`}>
+              <div className="ap-flow-label">
+                <span className="mono ap-step-num">STEP 03</span>
+                <span className="ap-step-title serif">{t("サイズを選ぶ", "Choose size")}</span>
+              </div>
+              <p className="ap-order-note mono">{t("1枚 = 300mm × 300mm", "1 panel = 300mm × 300mm")}</p>
+              <div className="ap-stepper-row">
+                <div className="ap-stepper-group">
+                  <span className="mono ap-stepper-label">{t("横", "Width")}</span>
+                  <div className="ap-stepper">
+                    <button className="ap-stepper-btn" onClick={() => adjW(-1)}>−</button>
+                    <span className="ap-stepper-val mono">{panelsW}</span>
+                    <button className="ap-stepper-btn" onClick={() => adjW(1)}>+</button>
+                  </div>
+                  <span className="mono ap-stepper-mm">{panelsW * 300}mm</span>
+                </div>
+                <span className="mono ap-stepper-times">×</span>
+                <div className="ap-stepper-group">
+                  <span className="mono ap-stepper-label">{t("縦", "Height")}</span>
+                  <div className="ap-stepper">
+                    <button className="ap-stepper-btn" onClick={() => adjH(-1)}>−</button>
+                    <span className="ap-stepper-val mono">{panelsH}</span>
+                    <button className="ap-stepper-btn" onClick={() => adjH(1)}>+</button>
+                  </div>
+                  <span className="mono ap-stepper-mm">{panelsH * 300}mm</span>
+                </div>
+              </div>
+              {step3Active && (
+                <div className="ap-stepper-total">
+                  <span className="mono ap-stepper-total-val">{panelsW * 300}mm × {panelsH * 300}mm</span>
+                  <span className="mono ap-stepper-total-panels">
+                    {t(`（合計 ${totalPanels} 枚）`, `(${totalPanels} panels total)`)}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* RESULT */}
+            <div className={`ap-sim-result-block${resultReady && !isCustom ? " is-ready" : ""}${isCustom ? " is-custom" : ""}`}>
+              {!selectedId && (
+                <p className="ap-sim-result-hint mono">
+                  {t("← デザインを選ぶと\n金額が表示されます", "← Select a design\nto see the estimate")}
+                </p>
+              )}
+              {isCustom && (
+                <>
+                  <p className="serif ap-custom-quote-note">
+                    {t(
+                      "フルオーダーは別途\nお見積もりです。",
+                      "Full custom is\nquoted separately."
+                    )}
+                  </p>
+                  <div className="ap-order-cta">
+                    <a className="contact-btn" href="contact.html">
+                      {t("ご相談する →", "Get in touch →")}
+                    </a>
+                  </div>
+                </>
+              )}
+              {resultReady && !isCustom && (
+                <>
+                  <div className="mono ap-result-head">
+                    {t("お見積もり（概算・税別）", "Estimate (approx., ex. tax)")}
+                  </div>
+                  <div className="ap-result-rows">
+                    <div className="ap-result-row">
+                      <span>{selected.name} × {totalPanels}{t("枚", " panels")}</span>
+                      <span className="mono">¥{panelSubtotal.toLocaleString()}</span>
+                    </div>
+                    {hasLogo && (
+                      <div className="ap-result-row">
+                        <span>{t("ロゴ・文字入れ", "Logo / lettering")}</span>
+                        <span className="mono">¥{LOGO_PRICE.toLocaleString()}</span>
+                      </div>
+                    )}
+                    <div className="ap-result-row ap-result-total">
+                      <span className="serif">{t("合計（概算）", "Total (approx.)")}</span>
+                      <span className="mono">¥{grandTotal.toLocaleString()}{t("〜", "+")}</span>
+                    </div>
+                  </div>
+                  <p className="ap-result-note mono">
+                    {t("※概算・税別。素材・設置等により変動。", "※ Approx., ex. tax. Varies by material, install, etc.")}
+                  </p>
+                  <div className="ap-order-cta">
+                    <a className="contact-btn" href="contact.html">
+                      {t("詳細をご相談する →", "Start a conversation →")}
+                    </a>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* STEP 02 */}
-        {showStep2 && (
-          <div className="ap-order-step" data-reveal>
-            <div className="ap-order-step-head">
-              <span className="mono ap-step-num">STEP 02</span>
-              <span className="ap-step-title serif">{t("ロゴ・文字入れ", "Logo / lettering")}</span>
-            </div>
-            <div className="ap-toggle-row">
-              <button
-                className={`ap-toggle-btn${hasLogo === true ? " is-on" : ""}`}
-                onClick={() => setHasLogo(true)}
-              >
-                {t("あり　＋¥15,000〜", "Yes　＋¥15,000")}
-              </button>
-              <button
-                className={`ap-toggle-btn${hasLogo === false ? " is-on" : ""}`}
-                onClick={() => setHasLogo(false)}
-              >
-                {t("なし", "No")}
-              </button>
-            </div>
+        <div className="ap-option-block" data-reveal>
+          <div className="mono ap-option-label">
+            {t("OPTION / ライティング", "OPTION / Lighting")}
           </div>
-        )}
-
-        {/* STEP 03 */}
-        {showStep3 && (
-          <div className="ap-order-step" data-reveal>
-            <div className="ap-order-step-head">
-              <span className="mono ap-step-num">STEP 03</span>
-              <span className="ap-step-title serif">{t("サイズを入力", "Enter size")}</span>
-            </div>
-            <p className="ap-order-note mono">
-              {t(
-                "パネルは 300mm × 300mm が基本単位です。横・縦それぞれの枚数を入力してください。",
-                "Each panel is 300mm × 300mm. Enter the number of panels wide and tall."
-              )}
-            </p>
-            <div className="ap-size-inputs">
-              <div className="ap-size-field">
-                <label className="mono ap-size-label">{t("横（枚数）", "Width (panels)")}</label>
-                <div className="ap-size-input-row">
-                  <input
-                    type="number" min="1" max="30"
-                    value={panelsW}
-                    onChange={(e) => setPanelsW(e.target.value)}
-                    className="ap-size-input"
-                    placeholder="1"
-                  />
-                  <span className="mono ap-size-mm">
-                    = {w > 0 ? w * 300 : "—"}mm
-                  </span>
-                </div>
-              </div>
-              <span className="ap-size-times mono">×</span>
-              <div className="ap-size-field">
-                <label className="mono ap-size-label">{t("縦（枚数）", "Height (panels)")}</label>
-                <div className="ap-size-input-row">
-                  <input
-                    type="number" min="1" max="30"
-                    value={panelsH}
-                    onChange={(e) => setPanelsH(e.target.value)}
-                    className="ap-size-input"
-                    placeholder="1"
-                  />
-                  <span className="mono ap-size-mm">
-                    = {h > 0 ? h * 300 : "—"}mm
-                  </span>
-                </div>
-              </div>
-            </div>
-            {totalPanels > 0 && (
-              <p className="ap-size-total mono">
-                {t(`合計 ${totalPanels} 枚 / ${w * 300}mm × ${h * 300}mm`, `Total ${totalPanels} panels / ${w * 300}mm × ${h * 300}mm`)}
-              </p>
+          <p className="ap-option-body">
+            {t(
+              "パネルにライティングを組み合わせることで、夜間・暗所での演出や、昼夜で異なる表情をつくることができます。",
+              "Pair the panel with lighting to create evening and low-light effects, or to give the panel a different presence by day and by night."
             )}
-          </div>
-        )}
-
-        {/* Result */}
-        {showResult && (
-          <div className="ap-result" data-reveal>
-            <div className="mono ap-result-head">{t("お見積もり（概算・税別）", "Estimate (approx., ex. tax)")}</div>
-            <div className="ap-result-rows">
-              <div className="ap-result-row">
-                <span>{selected.name} × {totalPanels}{t("枚", " panels")}</span>
-                <span className="mono">¥{panelSubtotal.toLocaleString()}</span>
-              </div>
-              {hasLogo && (
-                <div className="ap-result-row">
-                  <span>{t("ロゴ・文字入れ", "Logo / lettering")}</span>
-                  <span className="mono">¥{LOGO_PRICE.toLocaleString()}</span>
-                </div>
-              )}
-              <div className="ap-result-row ap-result-total">
-                <span className="serif">{t("合計（概算）", "Total (approx.)")}</span>
-                <span className="mono">¥{grandTotal.toLocaleString()}{t("〜（税別）", "+ (ex. tax)")}</span>
-              </div>
-            </div>
-            <p className="ap-result-note mono">
-              {t(
-                "※この金額は概算です。素材・カラー・設置などにより変動します。",
-                "※ Approximate only. Final price varies by material, color, and installation scope."
-              )}
-            </p>
-          </div>
-        )}
-
-        {/* Custom quote message */}
-        {isCustom && showStep2 && (
-          <div className="ap-result" data-reveal>
-            <p className="serif ap-custom-quote-note">
-              {t(
-                "フルオーダーデザインは、空間の規模・世界観によって金額が変わります。まずはお気軽にご相談ください。",
-                "Full custom pricing depends on scale and concept. Please reach out and we'll go from there."
-              )}
-            </p>
-          </div>
-        )}
-
-        {/* CTA */}
-        {(showResult || (isCustom && showStep2)) && (
-          <div className="ap-order-cta" data-reveal>
-            <a className="contact-btn" href="contact.html">
-              {t("詳細をご相談する →", "Start a conversation →")}
-            </a>
-          </div>
-        )}
+          </p>
+          <ul className="ap-option-list">
+            <li className="ap-option-item">· {t("設置環境・演出イメージをヒアリングのうえ、個別にご提案", "We propose a setup after briefing on environment and intent")}</li>
+            <li className="ap-option-item">· {t("料金はヒアリング後のお見積もりとなります", "Pricing is quoted following consultation")}</li>
+          </ul>
+        </div>
       </div>
     </section>
   );

@@ -705,6 +705,8 @@
 /* ================ Q-CUBE shared section layout ================ */
 .qc-section { border-top: var(--rule); }
 .qc-section-label {
+  font-size: 13px;
+  letter-spacing: 0.18em;
   margin-bottom: 36px;
   color: var(--muted);
 }
@@ -1140,43 +1142,111 @@
 }
 
 /* ================================================================
-   Art Panel — Order simulator
+   Art Panel — Hero simulator CTA button
+   ================================================================ */
+.ap-hero-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 36px;
+  padding: 14px 22px 14px 8px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  transition: background .2s, color .2s;
+}
+.ap-hero-sim-btn:hover { background: var(--ink); color: var(--bg); }
+.ap-hero-sim-badge {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 4px 10px;
+  line-height: 1.6;
+}
+.ap-hero-sim-btn:hover .ap-hero-sim-badge { background: var(--bg); color: var(--ink); }
+
+/* ================================================================
+   Art Panel — Order simulator (2-column layout)
    ================================================================ */
 .ap-order-section { background: var(--bg-2); }
 .ap-order-lead {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--muted);
-  margin: 16px 0 0;
-}
-.ap-order-step {
-  margin-top: 60px;
-  border-top: var(--rule);
-  padding-top: 36px;
-}
-.ap-order-step-head {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-.ap-step-num {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-}
-.ap-step-title {
-  font-size: 20px;
-  letter-spacing: 0.02em;
+  margin: 14px 0 0;
 }
 
-/* Design selector grid */
+/* Shared step labels */
+.ap-step-num { font-size: 12px; letter-spacing: 0.2em; color: var(--muted); }
+.ap-step-title { font-size: 20px; letter-spacing: 0.02em; }
+.ap-flow-label { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+
+/* 2-column layout */
+.ap-sim-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  border: 1px solid var(--line);
+  margin-top: 36px;
+  background: var(--line); /* gap color */
+  gap: 1px;
+}
+.ap-sim-left {
+  background: var(--bg);
+  padding: 28px 28px 20px;
+}
+.ap-sim-right {
+  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+}
+.ap-sim-right-step {
+  background: var(--bg);
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--line);
+  transition: opacity .25s;
+}
+.ap-sim-right-step.is-dim {
+  opacity: 0.28;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Result block at bottom of right column */
+.ap-sim-result-block {
+  flex: 1;
+  background: var(--bg-2);
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  min-height: 160px;
+}
+.ap-sim-result-block.is-ready {
+  background: var(--ink);
+  color: var(--bg);
+}
+.ap-sim-result-block.is-custom { justify-content: flex-start; }
+.ap-sim-result-hint {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  line-height: 2;
+  white-space: pre-line;
+  text-align: center;
+  margin: auto 0;
+}
+
+/* Design grid */
 .ap-sim-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  border: 1px solid var(--line);
   background: var(--line);
+  border: 1px solid var(--line);
 }
 .ap-sim-card {
   display: flex;
@@ -1188,50 +1258,46 @@
   text-align: left;
   transition: background .2s;
 }
-.ap-sim-card:hover { background: color-mix(in oklch, var(--bg-2) 60%, var(--bg)); }
-.ap-sim-card.is-selected {
-  background: var(--ink);
-  color: var(--bg);
+.ap-sim-card:hover { background: color-mix(in oklch, var(--bg-2) 70%, var(--bg)); }
+.ap-sim-card.is-selected { background: var(--ink); color: var(--bg); }
+.ap-sim-card.is-custom-card .ap-sim-ph {
+  background: repeating-linear-gradient(135deg, var(--bg-2) 0 10px, var(--line) 10px 11px);
+}
+.ap-sim-card.is-custom-card.is-selected .ap-sim-ph {
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 10px, rgba(255,255,255,0.12) 10px 11px);
 }
 .ap-sim-ph {
-  aspect-ratio: 4/3;
+  aspect-ratio: 5/3;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--line);
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.18em;
+  font-family: var(--mono);
   color: var(--muted);
   background: var(--bg-2);
 }
 .ap-sim-card.is-selected .ap-sim-ph {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
 }
-.ap-sim-card-body { padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 4px; }
-.ap-sim-card-name { font-size: 14px; letter-spacing: 0.04em; }
-.ap-sim-card-jp {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-}
-.ap-sim-card.is-selected .ap-sim-card-jp { color: rgba(255,255,255,0.5); }
-.ap-sim-card-price {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  margin-top: 6px;
-}
-.ap-sim-card.is-selected .ap-sim-card-price { color: var(--bg); }
+.ap-sim-card-body { padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 3px; }
+.ap-sim-card-name { font-size: 13px; letter-spacing: 0.04em; }
+.ap-sim-card-jp { font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+.ap-sim-card.is-selected .ap-sim-card-jp { color: rgba(255,255,255,0.45); }
+.ap-sim-card-price { font-size: 11px; letter-spacing: 0.08em; margin-top: 4px; }
+.ap-sim-card.is-selected .ap-sim-card-price { color: rgba(255,255,255,0.7); }
 
-/* Custom row button */
+/* Custom row */
 .ap-custom-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
   margin-top: 1px;
-  padding: 20px 20px;
+  padding: 15px 14px;
   border: 1px solid var(--line);
   border-top: none;
   background: var(--bg);
@@ -1240,157 +1306,182 @@
   transition: background .2s, border-color .2s;
 }
 .ap-custom-row:hover { background: var(--bg-2); }
-.ap-custom-row.is-selected {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-.ap-custom-row-tag {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.ap-custom-row.is-selected .ap-custom-row-tag { color: rgba(255,255,255,0.5); }
-.ap-custom-row-text {
-  font-size: 13px;
-  flex: 1;
-}
-.ap-custom-row-arrow {
-  font-size: 14px;
-  color: var(--muted);
-  margin-left: auto;
-}
-.ap-custom-row.is-selected .ap-custom-row-arrow { color: var(--bg); }
+.ap-custom-row.is-selected { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.ap-custom-row-tag { font-size: 11px; letter-spacing: 0.16em; color: var(--muted); white-space: nowrap; }
+.ap-custom-row.is-selected .ap-custom-row-tag { color: rgba(255,255,255,0.4); }
+.ap-custom-row-text { font-size: 13px; flex: 1; }
+.ap-custom-row-arrow { font-size: 13px; color: var(--muted); margin-left: auto; }
+.ap-custom-row.is-selected .ap-custom-row-arrow { color: rgba(255,255,255,0.6); }
 
-/* Logo toggle */
-.ap-toggle-row { display: flex; gap: 12px; }
-.ap-toggle-btn {
-  padding: 12px 28px;
+/* STEP 02 — YES / NO */
+.ap-choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ap-choice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 22px 12px;
   border: 1px solid var(--line);
-  background: var(--bg);
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: 0.1em;
+  background: var(--bg-2);
   cursor: pointer;
   transition: background .2s, border-color .2s, color .2s;
-  color: var(--ink);
 }
-.ap-toggle-btn:hover { background: var(--bg-2); }
-.ap-toggle-btn.is-on {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
+.ap-choice-card:hover { background: var(--bg); }
+.ap-choice-card.is-selected { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.ap-choice-mark { font-size: 18px; letter-spacing: 0; color: var(--muted); line-height: 1; }
+.ap-choice-card.is-selected .ap-choice-mark { color: rgba(255,255,255,0.5); }
+.ap-choice-main { font-size: 18px; letter-spacing: 0.03em; }
+.ap-choice-sub { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); }
+.ap-choice-card.is-selected .ap-choice-sub { color: rgba(255,255,255,0.5); }
 
-/* Size inputs */
-.ap-order-note {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin: 0 0 20px;
-}
-.ap-size-inputs {
+/* STEP 03 — Stepper */
+.ap-order-note { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); margin: 0 0 16px; }
+.ap-stepper-row { display: flex; align-items: center; gap: 16px; }
+.ap-stepper-group { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.ap-stepper-label { font-size: 10px; letter-spacing: 0.16em; color: var(--muted); }
+.ap-stepper {
   display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.ap-size-field { display: flex; flex-direction: column; gap: 8px; }
-.ap-size-label { font-size: 11px; letter-spacing: 0.14em; color: var(--muted); }
-.ap-size-input-row { display: flex; align-items: center; gap: 10px; }
-.ap-size-input {
-  width: 80px;
-  padding: 10px 14px;
+  align-items: center;
   border: 1px solid var(--line);
   background: var(--bg);
-  font-family: var(--mono);
-  font-size: 16px;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-  appearance: textfield;
-  -moz-appearance: textfield;
+  height: 44px;
 }
-.ap-size-input::-webkit-inner-spin-button,
-.ap-size-input::-webkit-outer-spin-button { -webkit-appearance: none; }
-.ap-size-input:focus { outline: 1px solid var(--ink); }
-.ap-size-mm { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
-.ap-size-times {
+.ap-stepper-btn {
+  width: 44px;
+  height: 100%;
+  border: none;
+  background: transparent;
   font-size: 18px;
-  color: var(--muted);
-  padding-bottom: 2px;
+  font-family: var(--mono);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.ap-size-total {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin: 16px 0 0;
+.ap-stepper-btn:hover { background: var(--bg-2); }
+.ap-stepper-btn:active { background: var(--line); }
+.ap-stepper-val {
+  min-width: 44px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.ap-stepper-mm { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); }
+.ap-stepper-times { font-size: 16px; color: var(--muted); padding-top: 20px; }
+.ap-stepper-total {
+  margin-top: 16px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ap-stepper-total-val { font-size: 17px; letter-spacing: 0.04em; }
+.ap-stepper-total-panels { font-size: 11px; letter-spacing: 0.08em; color: var(--muted); }
 
-/* Result box */
-.ap-result {
-  margin-top: 48px;
-  border: 1px solid var(--line-strong, var(--ink));
-  padding: 32px 36px;
-  background: var(--bg);
-}
+/* Result panel (inside .is-ready = dark bg) */
 .ap-result-head {
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--muted);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-.ap-result-rows { display: flex; flex-direction: column; gap: 0; }
+.ap-sim-result-block.is-ready .ap-result-head { color: rgba(255,255,255,0.45); }
+.ap-result-rows { display: flex; flex-direction: column; }
 .ap-result-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 14px;
-  gap: 24px;
+  font-size: 15px;
+  gap: 12px;
 }
+.ap-sim-result-block.is-ready .ap-result-row { border-color: rgba(255,255,255,0.15); }
 .ap-result-total {
   border-bottom: none;
-  padding-top: 20px;
-  font-size: 17px;
+  padding-top: 16px;
+  font-size: 22px;
+  line-height: 1.4;
+}
+.ap-result-total .mono {
+  font-size: 26px;
+  letter-spacing: 0.04em;
 }
 .ap-result-note {
   font-size: 11px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  margin: 20px 0 0;
+  margin: 14px 0 0;
+  line-height: 1.7;
 }
-.ap-custom-quote-note {
-  font-size: 17px;
-  line-height: 1.85;
-  margin: 0;
-}
+.ap-sim-result-block.is-ready .ap-result-note { color: rgba(255,255,255,0.35); }
+.ap-custom-quote-note { font-size: 16px; line-height: 1.9; white-space: pre-line; margin: 0 0 24px; }
+.ap-order-cta { margin-top: 20px; }
+.ap-order-cta .contact-btn { display: inline-block; }
 
-/* CTA */
-.ap-order-cta {
-  margin-top: 40px;
+/* ================================================================
+   Art Panel — Option block (lighting)
+   ================================================================ */
+.ap-option-block {
+  margin-top: 24px;
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.ap-option-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.ap-option-body {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 12px;
+}
+.ap-option-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 6px;
+}
+.ap-option-item {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
 }
 
 /* ================================================================
    Art Panel — Responsive
    ================================================================ */
-@media (max-width: 900px) {
-  .ap-designs-grid { grid-template-columns: repeat(2, 1fr); }
-  .ap-sim-grid { grid-template-columns: repeat(2, 1fr); }
-  .ap-custom-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .ap-custom-banner-body { flex-direction: column; gap: 8px; }
+@media (max-width: 1000px) {
+  .ap-sim-layout { grid-template-columns: 1fr 320px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 860px) {
+  .ap-sim-layout { grid-template-columns: 1fr; gap: 0; }
+  .ap-sim-left { border-bottom: 1px solid var(--line); }
+  .ap-sim-right { flex-direction: row; flex-wrap: wrap; }
+  .ap-sim-right-step { flex: 1; min-width: 200px; }
+  .ap-sim-result-block { width: 100%; }
+}
+@media (max-width: 640px) {
   .ap-designs-grid { grid-template-columns: 1fr; }
   .ap-design-card { border-right: none; }
-  .ap-sim-grid { grid-template-columns: 1fr; }
   .ap-process-step { grid-template-columns: 1fr; gap: 8px; }
-  .ap-size-inputs { flex-direction: column; align-items: flex-start; }
-  .ap-size-times { display: none; }
-  .ap-result { padding: 24px 20px; }
-  .ap-toggle-row { flex-direction: column; }
-  .ap-toggle-btn { width: 100%; }
+  .ap-sim-right { flex-direction: column; }
+  .ap-sim-right-step { min-width: unset; }
+  .ap-stepper-times { display: none; }
+  .ap-custom-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ap-custom-banner-body { flex-direction: column; gap: 8px; }
 }

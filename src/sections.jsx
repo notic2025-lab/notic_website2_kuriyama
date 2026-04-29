@@ -160,33 +160,36 @@ function ProductsSection({ lang }) {
 // ---------- Work ----------
 function WorkSection({ lang }) {
   const d = CONTENT.work[lang];
+  const loop = [...d.items, ...d.items];
   return (
     <section className="section" id="work">
       <SectionHead eyebrow={d.eyebrow} title={d.title} />
-      <div className="work-grid">
-        {d.items.map((it) => (
-          <a href={`work.html?w=${it.id}`} className="work-card" key={it.num} data-reveal>
-            <Placeholder
-              label={`${it.num} — ${it.client}`}
-              ratio="16/9"
-              tone="bg2"
-              image={it.image}
-              alt={it.client}
-            />
-            <div className="work-card-body">
-              <div className="work-card-meta mono">
-                <span>{it.num}</span>
-                <span>{it.sector} · {it.year}</span>
+      <div className="work-marquee">
+        <div className="work-marquee-track">
+          {loop.map((it, i) => (
+            <a href={`work.html?w=${it.id}`} className="work-card" key={`${it.id}-${i}`}>
+              <Placeholder
+                label={`${it.num} — ${it.client}`}
+                ratio="4/3"
+                tone="bg2"
+                image={it.image}
+                alt={it.client}
+              />
+              <div className="work-card-body">
+                <div className="work-card-meta mono">
+                  <span>{it.num}</span>
+                  <span>{it.sector} · {it.year}</span>
+                </div>
+                <h3 className="work-card-client">{it.client}</h3>
+                <p className="work-card-desc">{it.desc}</p>
+                <div className="work-card-foot">
+                  <span className="work-tag">{it.tag}</span>
+                  <span className="service-arrow">→</span>
+                </div>
               </div>
-              <h3 className="work-card-client">{it.client}</h3>
-              <p className="work-card-desc">{it.desc}</p>
-              <div className="work-card-foot">
-                <span className="work-tag">{it.tag}</span>
-                <span className="service-arrow">→</span>
-              </div>
-            </div>
-          </a>
-        ))}
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

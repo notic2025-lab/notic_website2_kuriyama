@@ -558,6 +558,39 @@ const CONTENT = {
             body: "リブ形状・注ぎ口・全体バランスなどを、\n短いサイクルで何度も3Dプリントして検証。\nつくる → 淹れる → 調整する、を高速で回すことで、\n商品化に向けた確度を段階的に高めていきました。",
           },
         },
+        {
+          id: "bridal-w",
+          num: "07", client: "ブライダル W式場", sector: "Bridal", year: "2026", tag: "Art Panel",
+          desc: "エントランスロビーのウェルカムアートパネル制作。",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "ブライダル施設Wのエントランスロビーに、\n光と陰影が揺れるウェルカムアートパネルを設置しました。",
+            role: "空間ヒアリング / パターンデザイン / 3Dプリント制作 / 設置",
+            body: "新郎新婦と参列者を迎える最初の空間に、\n視覚的な「特別感」を埋め込むことを目的に制作。\nパターンは会場の雰囲気に合わせてゼロからデザインしました。",
+          },
+        },
+        {
+          id: "hotel-h",
+          num: "08", client: "ホテル H", sector: "Hospitality", year: "2026", tag: "Art Panel",
+          desc: "客室廊下の壁面を彩るアートパネルの連続設置。",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "ホテルHの客室階廊下に、\n連続するアートパネルを設置しました。",
+            role: "設計監修 / パターン制作 / 連結設置",
+            body: "歩くごとに光と影のうつろいが変わる体験をつくることを目的に、\n連結パネルで壁面全体をデザイン。\n滞在の記憶に残る廊下を実現しました。",
+          },
+        },
+        {
+          id: "apparel-c",
+          num: "09", client: "アパレル C社", sector: "Retail", year: "2026", tag: "Q-CUBE",
+          desc: "ポップアップストアにおけるQ-CUBEの空間設置。",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "アパレルブランドCのポップアップストアに、\nブランドカラーのQ-CUBEを設置しました。",
+            role: "カラー調整 / 小ロット制作 / 設置サポート",
+            body: "SNSフォロー・オンラインストアへの誘導を目的に、\nブランドの世界観に合わせたカスタムカラーで制作。\n来店客が自然と手を伸ばす設置位置を提案しました。",
+          },
+        },
       ],
     },
     en: {
@@ -630,6 +663,39 @@ const CONTENT = {
             body: "Rib geometry, spout shape, and overall balance were iterated in short cycles through 3D printing. Make → brew → adjust — keeping the loop tight let us steadily close in on a shape ready for product.",
           },
         },
+        {
+          id: "bridal-w",
+          num: "07", client: "Bridal venue W", sector: "Bridal", year: "2026", tag: "Art Panel",
+          desc: "Welcome art panel for a bridal venue entrance lobby.",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "An art panel was designed and installed in the entrance lobby of bridal venue W — panels of light and shadow shifting as guests arrive.",
+            role: "Space brief / pattern design / 3D fabrication / installation",
+            body: "The brief was to build a sense of occasion into the very first space couples and guests enter. The pattern was designed from scratch to match the venue's atmosphere.",
+          },
+        },
+        {
+          id: "hotel-h",
+          num: "08", client: "Hotel H", sector: "Hospitality", year: "2026", tag: "Art Panel",
+          desc: "Continuous art panel installation along a guest-room corridor.",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "A run of connected art panels was installed along a guest-floor corridor at Hotel H.",
+            role: "Design direction / panel fabrication / modular installation",
+            body: "The goal was to make the corridor itself part of the stay — light and shadow shifting as guests walk through. Modular panels covered the full wall run.",
+          },
+        },
+        {
+          id: "apparel-c",
+          num: "09", client: "Apparel brand C", sector: "Retail", year: "2026", tag: "Q-CUBE",
+          desc: "Q-CUBE placement in a pop-up store setting.",
+          image: "assets/coming-soon.jpg",
+          detail: {
+            overview: "Q-CUBE was placed inside apparel brand C's pop-up store, produced in the brand's signature color.",
+            role: "Color customization / small-batch production / installation support",
+            body: "The goal was to drive SNS follows and online store traffic. The cube was produced in brand color and positioned where shoppers would naturally reach for it.",
+          },
+        },
       ],
     },
   },
@@ -638,7 +704,7 @@ const CONTENT = {
     jp: {
       eyebrow: "N—06 / VALUE",
       title: "大切にすること",
-      lead: "違いに気づき、つくることで価値に変える。\nNOTICが日々の判断で大切にしている姿勢です。",
+      lead: "違いに気づき、つくることで価値に変える。NOTICが日々の判断で大切にしている姿勢です。",
       items: [
         {
           num: "V—01",
@@ -667,7 +733,7 @@ const CONTENT = {
     en: {
       eyebrow: "N—06 / VALUE",
       title: "What we value",
-      lead: "By noticing differences and shaping them through making,\nwe turn friction into real value.",
+      lead: "By noticing differences and shaping them through making, we turn friction into real value.",
       items: [
         {
           num: "V—01",

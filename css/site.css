@@ -444,28 +444,46 @@ section#value { display: none !important; }
   .work-desc { grid-column: 1 / -1; }
 }
 
-/* ---------- Work grid (cards) ---------- */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px 24px;
-  padding: 0 var(--pad-x);
+/* ---------- Work marquee (infinite scroll) ---------- */
+.work-marquee {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 60px;
+  /* fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
 }
+.work-marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: work-scroll 55s linear infinite;
+}
+.work-marquee:hover .work-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes work-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 .work-card {
+  width: 320px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
   color: var(--ink);
   text-decoration: none;
-  transition: transform .4s ease, opacity .4s ease, color .3s ease;
+  transition: color .3s ease;
 }
-.work-card:hover { transform: translateY(-3px); color: var(--accent); }
+.work-card:hover { color: var(--accent); }
 .work-card:hover .work-card-meta,
 .work-card:hover .work-card-desc { color: var(--accent); }
 .work-card:hover .work-tag { color: var(--accent); border-color: var(--accent); }
 .work-card .ph { width: 100%; transition: opacity .3s ease; }
-.work-card:hover .ph { opacity: 0.92; }
-.work-card-body { display: flex; flex-direction: column; gap: 6px; }
+.work-card:hover .ph { opacity: 0.88; }
+.work-card-body { display: flex; flex-direction: column; gap: 6px; padding: 0 2px; }
 .work-card-meta {
   display: flex;
   justify-content: space-between;
@@ -476,14 +494,14 @@ section#value { display: none !important; }
 .work-card-client {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(18px, 1.8vw, 22px);
+  font-size: 18px;
   line-height: 1.3;
   margin: 2px 0 0;
 }
 .work-card-desc {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.7;
-  color: var(--ink-2);
+  color: var(--muted);
   margin: 0;
   white-space: pre-line;
 }
@@ -494,11 +512,9 @@ section#value { display: none !important; }
   margin-top: 6px;
 }
 
-@media (max-width: 1080px) {
-  .work-grid { grid-template-columns: repeat(2, 1fr); }
-}
 @media (max-width: 720px) {
-  .work-grid { grid-template-columns: 1fr; gap: 28px; }
+  .work-card { width: 260px; }
+  .work-marquee-track { gap: 14px; }
 }
 
 /* ---------- Work case (work.html) ---------- */
