@@ -920,7 +920,7 @@ const CONTENT = {
       reply: "通常、2営業日以内にご返信いたします。",
       cta: "メールを送る →",
       info: [
-        { label: "所在地", value: "滋賀県大津市浜町 1-1-1" },
+        { label: "所在地", value: "〒520-3011 滋賀県栗東市下戸山1134-1 ties tenpoint 105" },
         { label: "営業時間", value: "10:00 - 18:00（土日祝を除く）" },
       ],
     },
@@ -932,7 +932,7 @@ const CONTENT = {
       reply: "We usually reply within 2 business days.",
       cta: "Send an email →",
       info: [
-        { label: "Address", value: "1-1-1 Hamacho, Otsu, Shiga" },
+        { label: "Address", value: "1134-1 Shimotoyama, Ritto, Shiga 520-3011 / ties tenpoint 105" },
         { label: "Hours", value: "10:00 - 18:00 (Mon–Fri)" },
       ],
     },

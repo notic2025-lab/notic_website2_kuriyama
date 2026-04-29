@@ -542,6 +542,7 @@ section#value { display: none !important; }
   overflow: hidden;
   width: 100%;
   margin-top: 60px;
+  padding-block: 14px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -554,9 +555,6 @@ section#value { display: none !important; }
 }
 .work-marquee-track--rev {
   animation: work-scroll-rev 55s linear infinite;
-}
-.work-marquee-track:hover {
-  animation-play-state: paused;
 }
 @keyframes work-scroll {
   from { transform: translateX(0); }
@@ -575,14 +573,17 @@ section#value { display: none !important; }
   gap: 14px;
   color: var(--ink);
   text-decoration: none;
-  transition: color .3s ease;
+  transition: color .3s ease, transform .45s cubic-bezier(.2,.7,.2,1);
+  transform-origin: center center;
 }
-.work-card:hover { color: var(--accent); }
+.work-card:hover {
+  color: var(--accent);
+  transform: scale(1.04);
+}
 .work-card:hover .work-card-meta,
 .work-card:hover .work-card-desc { color: var(--accent); }
 .work-card:hover .work-tag { color: var(--accent); border-color: var(--accent); }
-.work-card .ph { width: 100%; transition: opacity .3s ease; }
-.work-card:hover .ph { opacity: 0.88; }
+.work-card .ph { width: 100%; }
 .work-card-body { display: flex; flex-direction: column; gap: 6px; padding: 0 2px; }
 .work-card-meta {
   display: flex;
