@@ -916,11 +916,10 @@ const CONTENT = {
       eyebrow: "N—05 / CONTACT",
       title: "お気づきのことを、\n聞かせてください。",
       body: "課題・構想・雑談、いずれも歓迎します。",
-      email: "contact.notic2026@gmail.com",
+      email: "contact@notic.jp",
       reply: "通常、2営業日以内にご返信いたします。",
       cta: "メールを送る →",
       info: [
-        { label: "TEL", value: "077-123-4567" },
         { label: "所在地", value: "滋賀県大津市浜町 1-1-1" },
         { label: "営業時間", value: "10:00 - 18:00（土日祝を除く）" },
       ],
@@ -929,11 +928,10 @@ const CONTENT = {
       eyebrow: "N—05 / CONTACT",
       title: "Tell us what\nyou've noticed.",
       body: "Briefs, ideas, or a quick conversation — all welcome.",
-      email: "contact.notic2026@gmail.com",
+      email: "contact@notic.jp",
       reply: "We usually reply within 2 business days.",
       cta: "Send an email →",
       info: [
-        { label: "TEL", value: "077-123-4567" },
         { label: "Address", value: "1-1-1 Hamacho, Otsu, Shiga" },
         { label: "Hours", value: "10:00 - 18:00 (Mon–Fri)" },
       ],
@@ -944,7 +942,6 @@ const CONTENT = {
     jp: {
       copy: "© 2026 NOTIC",
       links: [
-        { label: "Value", href: "value.html" },
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
       ],
@@ -952,7 +949,6 @@ const CONTENT = {
     en: {
       copy: "© 2026 NOTIC",
       links: [
-        { label: "Value", href: "value.html" },
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
       ],

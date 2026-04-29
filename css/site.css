@@ -10,6 +10,9 @@
   -webkit-backdrop-filter: saturate(1.2) blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .3s ease;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 }
 .topbar.is-scrolled { border-bottom-color: var(--line); }
 .topbar-inner {

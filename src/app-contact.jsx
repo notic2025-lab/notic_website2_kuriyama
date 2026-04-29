@@ -73,7 +73,6 @@ function ContactForm({ lang }) {
     name: "お名前",
     company: "会社名・団体名",
     email: "メールアドレス",
-    phone: "電話番号",
     type: "お問い合わせ種別",
     types: [
       "ご依頼・ご相談",
@@ -100,7 +99,6 @@ function ContactForm({ lang }) {
     name: "Name",
     company: "Company / Organization",
     email: "Email",
-    phone: "Phone",
     type: "Inquiry type",
     types: [
       "Project inquiry",
@@ -125,7 +123,6 @@ function ContactForm({ lang }) {
     name: "",
     company: "",
     email: "",
-    phone: "",
     type: t.types[0],
     subject: "",
     message: "",
@@ -148,7 +145,6 @@ function ContactForm({ lang }) {
       `お名前: ${state.name}`,
       `会社名: ${state.company}`,
       `メール: ${state.email}`,
-      `電話: ${state.phone}`,
       `種別: ${state.type}`,
       ``,
       `--- お問い合わせ内容 ---`,
@@ -157,7 +153,6 @@ function ContactForm({ lang }) {
       `Name: ${state.name}`,
       `Company: ${state.company}`,
       `Email: ${state.email}`,
-      `Phone: ${state.phone}`,
       `Type: ${state.type}`,
       ``,
       `--- Message ---`,
@@ -240,20 +235,6 @@ function ContactForm({ lang }) {
               value={state.email}
               onChange={set("email")}
               placeholder="name@example.com"
-            />
-          </div>
-
-          <div className="form-row" data-reveal>
-            <label className="form-label">
-              <span className="form-label-text">{t.phone}</span>
-              <span className="form-badge is-opt">{t.optional}</span>
-            </label>
-            <input
-              className="form-input"
-              type="tel"
-              value={state.phone}
-              onChange={set("phone")}
-              placeholder="000-0000-0000"
             />
           </div>
 
