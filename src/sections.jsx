@@ -160,35 +160,44 @@ function ProductsSection({ lang }) {
 // ---------- Work ----------
 function WorkSection({ lang }) {
   const d = CONTENT.work[lang];
-  const loop = [...d.items, ...d.items];
+  const offset = Math.floor(d.items.length / 2);
+  const shifted = [...d.items.slice(offset), ...d.items.slice(0, offset)];
+  const loop1 = [...d.items, ...d.items];
+  const loop2 = [...shifted, ...shifted];
+
+  const renderCard = (it, i, suffix) => (
+    <a href={`work.html?w=${it.id}`} className="work-card" key={`${it.id}-${suffix}-${i}`}>
+      <Placeholder
+        label={`${it.num} — ${it.client}`}
+        ratio="4/3"
+        tone="bg2"
+        image={it.image}
+        alt={it.client}
+      />
+      <div className="work-card-body">
+        <div className="work-card-meta mono">
+          <span>{it.num}</span>
+          <span>{it.sector} · {it.year}</span>
+        </div>
+        <h3 className="work-card-client">{it.client}</h3>
+        <p className="work-card-desc">{it.desc}</p>
+        <div className="work-card-foot">
+          <span className="work-tag">{it.tag}</span>
+          <span className="service-arrow">→</span>
+        </div>
+      </div>
+    </a>
+  );
+
   return (
     <section className="section" id="work">
       <SectionHead eyebrow={d.eyebrow} title={d.title} />
       <div className="work-marquee">
         <div className="work-marquee-track">
-          {loop.map((it, i) => (
-            <a href={`work.html?w=${it.id}`} className="work-card" key={`${it.id}-${i}`}>
-              <Placeholder
-                label={`${it.num} — ${it.client}`}
-                ratio="4/3"
-                tone="bg2"
-                image={it.image}
-                alt={it.client}
-              />
-              <div className="work-card-body">
-                <div className="work-card-meta mono">
-                  <span>{it.num}</span>
-                  <span>{it.sector} · {it.year}</span>
-                </div>
-                <h3 className="work-card-client">{it.client}</h3>
-                <p className="work-card-desc">{it.desc}</p>
-                <div className="work-card-foot">
-                  <span className="work-tag">{it.tag}</span>
-                  <span className="service-arrow">→</span>
-                </div>
-              </div>
-            </a>
-          ))}
+          {loop1.map((it, i) => renderCard(it, i, "r1"))}
+        </div>
+        <div className="work-marquee-track work-marquee-track--rev">
+          {loop2.map((it, i) => renderCard(it, i, "r2"))}
         </div>
       </div>
     </section>

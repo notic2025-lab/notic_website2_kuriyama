@@ -73,6 +73,8 @@ function useAccent(initial = "red") {
 function TopBar({ lang, setLang, accent, setAccent }) {
   const items = CONTENT.nav[lang].filter((it) => it.id !== "value");
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -80,7 +82,11 @@ function TopBar({ lang, setLang, accent, setAccent }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Detect if we are on the home page. If not, nav links jump back to index.html#section.
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const isHome = (() => {
     try {
       const path = window.location.pathname;
@@ -107,6 +113,8 @@ function TopBar({ lang, setLang, accent, setAccent }) {
     }
     return null;
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className={`topbar ${scrolled ? "is-scrolled" : ""}`}>
@@ -162,8 +170,41 @@ function TopBar({ lang, setLang, accent, setAccent }) {
               aria-pressed={lang === "en"}
             >EN</button>
           </div>
+          <button
+            className={`hamburger-btn${menuOpen ? " is-open" : ""}`}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={menuOpen}
+          >
+            <span /><span /><span />
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="mobile-menu" role="dialog" aria-modal="true">
+          <nav className="mobile-nav">
+            {items.map((it) => (
+              <a key={it.id} href={navHref(it)} className="mobile-nav-link" onClick={closeMenu}>
+                <span className="mono mobile-nav-num">{it.num}</span>
+                <span className="mobile-nav-label">{it.label}</span>
+                <span className="mobile-nav-arrow">→</span>
+              </a>
+            ))}
+          </nav>
+          <div className="mobile-menu-footer">
+            <a
+              href="https://imbue.buyshop.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shop-btn mono"
+            >
+              <span>SHOP</span>
+              <span className="shop-btn-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
