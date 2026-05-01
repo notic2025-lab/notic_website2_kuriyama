@@ -144,6 +144,110 @@
   .detail-title-section { padding: 40px 0 20px; }
 }
 
+/* ================ Legal pages ================ */
+.detail-firstview.legal-firstview {
+  min-height: min(100vh, 780px);
+}
+.legal-hero-main {
+  padding-bottom: 24px;
+}
+.legal-headline {
+  font-size: 76px;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+.legal-section {
+  padding-top: 90px;
+}
+.legal-wrap {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 820px);
+  gap: 48px;
+  align-items: start;
+}
+.legal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 96px;
+}
+.legal-content {
+  max-width: 820px;
+}
+.legal-block + .legal-block {
+  margin-top: 46px;
+  padding-top: 36px;
+  border-top: var(--rule);
+}
+.legal-block-title {
+  margin: 0 0 18px;
+  font-size: 26px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.legal-paragraph {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.95;
+  white-space: pre-line;
+}
+.legal-paragraph + .legal-paragraph {
+  margin-top: 14px;
+}
+.legal-list {
+  margin: 18px 0 0;
+  padding-left: 1.25em;
+  color: var(--ink-2);
+}
+.legal-list li {
+  margin: 8px 0;
+  line-height: 1.85;
+}
+.legal-table {
+  margin: 0;
+  border-top: 1px solid var(--line-strong);
+}
+.legal-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  padding: 18px 0;
+  border-bottom: var(--rule);
+}
+.legal-row dt {
+  font-weight: 600;
+  color: var(--ink);
+}
+.legal-row dd {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+@media (max-width: 860px) {
+  .detail-firstview.legal-firstview {
+    min-height: auto;
+  }
+  .legal-headline {
+    font-size: 42px;
+  }
+  .legal-section {
+    padding-top: 56px;
+  }
+  .legal-wrap {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .legal-meta {
+    position: static;
+  }
+  .legal-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
 /* ================ Detail pages — first-view (hero fills 100vh) ================ */
 .detail-firstview {
   min-height: 100vh;

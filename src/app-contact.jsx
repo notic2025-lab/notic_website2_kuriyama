@@ -38,11 +38,11 @@ function ContactInfo({ lang }) {
   const d = CONTENT.contact[lang];
   const blocks = lang === "jp" ? [
     { label: "EMAIL", value: d.email, href: `mailto:${d.email}` },
-    { label: "BASED", value: "滋賀県 / SHIGA, JAPAN" },
+    { label: "BASED", value: "〒525-8577 滋賀県草津市野路東1-1-1 立命館大学BKC Startup Lounge" },
     { label: "HOURS", value: "平日 10:00 – 18:00 (JST)" },
   ] : [
     { label: "EMAIL", value: d.email, href: `mailto:${d.email}` },
-    { label: "BASED", value: "Shiga, Japan" },
+    { label: "BASED", value: "〒525-8577 滋賀県草津市野路東1-1-1 立命館大学BKC Startup Lounge" },
     { label: "HOURS", value: "Mon–Fri 10:00 – 18:00 JST" },
   ];
   return (
@@ -294,7 +294,7 @@ function ContactForm({ lang }) {
                 onChange={set("agree")}
               />
               <span>
-                <a href="#" className="form-privacy-link">{t.privacyLink}</a>
+                <a href="privacy-policy.html" className="form-privacy-link">{t.privacyLink}</a>
                 {lang === "jp" ? "に同意します。" : " — I agree."}
               </span>
             </label>
