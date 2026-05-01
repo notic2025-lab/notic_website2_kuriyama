@@ -248,6 +248,27 @@
   }
 }
 
+/* ================ Trademark notice ================ */
+.trademark-notice {
+  max-width: 920px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.trademark-notice--product {
+  max-width: 72ch;
+  margin-top: 20px;
+}
+.trademark-notice--legal {
+  margin-top: 34px;
+}
+@media (max-width: 720px) {
+  .trademark-notice {
+    font-size: 11px;
+  }
+}
+
 /* ================ Detail pages — first-view (hero fills 100vh) ================ */
 .detail-firstview {
   min-height: 100vh;

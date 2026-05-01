@@ -81,8 +81,9 @@ function LegalBlock({ section }) {
   );
 }
 
-function LegalBody({ page, lang }) {
+function LegalBody({ page, lang, showTrademark }) {
   const sections = page.sections[lang] || page.sections.jp;
+  const TrademarkNoticeComponent = window.TrademarkNotice;
 
   return (
     <section className="section legal-section" id="legal-body">
@@ -95,6 +96,9 @@ function LegalBody({ page, lang }) {
           {sections.map((section) => (
             <LegalBlock section={section} key={section.title} />
           ))}
+          {showTrademark && TrademarkNoticeComponent ? (
+            <TrademarkNoticeComponent lang={lang} variant="legal" />
+          ) : null}
         </div>
       </div>
     </section>
@@ -108,6 +112,8 @@ function AppLegal() {
 
   const slug = useMemoLegal(() => getLegalSlugFromPath(), []);
   const page = LEGAL_CONTENT[slug] || LEGAL_CONTENT["privacy-policy"];
+  const legalPagesWithQrTrademark = ["privacy-policy", "terms"];
+  const shouldShowQrTrademark = legalPagesWithQrTrademark.includes(slug);
 
   useEffectLegal(() => {
     document.title = page.metaTitle[lang];
@@ -126,7 +132,7 @@ function AppLegal() {
             <span className="detail-firstview-scroll-arrow">↓</span>
           </a>
         </div>
-        <LegalBody page={page} lang={lang} />
+        <LegalBody page={page} lang={lang} showTrademark={shouldShowQrTrademark} />
       </main>
       <Footer lang={lang} />
     </>
