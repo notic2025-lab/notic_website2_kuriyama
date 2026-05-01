@@ -920,7 +920,7 @@ const CONTENT = {
       reply: "通常、2営業日以内にご返信いたします。",
       cta: "メールを送る →",
       info: [
-        { label: "所在地", value: "〒520-3011 滋賀県栗東市下戸山1134-1 ties tenpoint 105" },
+        { label: "所在地", value: "〒525-8577 滋賀県草津市野路東1-1-1 立命館大学BKC Startup Lounge" },
         { label: "営業時間", value: "10:00 - 18:00（土日祝を除く）" },
       ],
     },
@@ -932,7 +932,7 @@ const CONTENT = {
       reply: "We usually reply within 2 business days.",
       cta: "Send an email →",
       info: [
-        { label: "Address", value: "1134-1 Shimotoyama, Ritto, Shiga 520-3011 / ties tenpoint 105" },
+        { label: "Address", value: "〒525-8577 滋賀県草津市野路東1-1-1 立命館大学BKC Startup Lounge" },
         { label: "Hours", value: "10:00 - 18:00 (Mon–Fri)" },
       ],
     },
@@ -941,16 +941,26 @@ const CONTENT = {
   footer: {
     jp: {
       copy: "© 2026 NOTIC",
-      links: [
+      socialLinks: [
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
+      ],
+      legalLinks: [
+        { label: "プライバシーポリシー", href: "privacy-policy.html" },
+        { label: "利用規約", href: "terms.html" },
+        { label: "特定商取引法に基づく表記", href: "commercial-transactions.html" },
       ],
     },
     en: {
       copy: "© 2026 NOTIC",
-      links: [
+      socialLinks: [
         { label: "Instagram", href: "https://www.instagram.com/notice_and_create?igsh=MWV4ajhseGxmejdscg%3D%3D&utm_source=qr" },
         { label: "X (Twitter)", href: "https://x.com/awai_design_?s=21&t=DH1af4BUA8x3-h0il-2lWQ" },
+      ],
+      legalLinks: [
+        { label: "Privacy Policy", href: "privacy-policy.html" },
+        { label: "Terms of Service", href: "terms.html" },
+        { label: "Legal Notice", href: "commercial-transactions.html" },
       ],
     },
   },

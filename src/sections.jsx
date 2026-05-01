@@ -265,23 +265,40 @@ function ContactSection({ lang }) {
 // ---------- Footer ----------
 function Footer({ lang }) {
   const d = CONTENT.footer[lang];
+  const renderLink = (l, key) => {
+    const isExternal = /^https?:\/\//.test(l.href || "");
+    return (
+      <a
+        key={key}
+        href={l.href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+      >
+        {l.label}
+      </a>
+    );
+  };
+  const renderLinks = (links) => links.map((l) => (
+    renderLink(l, l.label)
+  ));
+  const renderLegalLinks = (links) => links.reduce((items, l, i) => {
+    if (i > 0) {
+      items.push(<span className="footer-separator" aria-hidden="true" key={`separator-${l.label}`}>|</span>);
+    }
+    items.push(renderLink(l, `link-${l.label}`));
+    return items;
+  }, []);
+
   return (
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-links">
-          {d.links.map((l) => {
-            const isExternal = /^https?:\/\//.test(l.href || "");
-            return (
-              <a
-                key={l.label}
-                href={l.href}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noopener noreferrer" : undefined}
-              >
-                {l.label}
-              </a>
-            );
-          })}
+          <div className="footer-link-row footer-social">
+            {renderLinks(d.socialLinks || [])}
+          </div>
+          <div className="footer-link-row footer-legal">
+            {renderLegalLinks(d.legalLinks || [])}
+          </div>
         </div>
         <div className="footer-copy">{d.copy}</div>
       </div>
