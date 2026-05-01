@@ -178,10 +178,11 @@ function ProductSpecs({ lang, product }) {
 }
 
 // ---------- Q-CUBE ORIGINAL ----------
-function ProductOriginal({ lang, product }) {
+function ProductOriginal({ lang, product, showTrademark }) {
   const o = product.detail?.original;
   if (!o) return null;
   const email = CONTENT.contact[lang].email;
+  const TrademarkNoticeComponent = window.TrademarkNotice;
   const sectionLabel = lang === "jp" ? "Q-CUBE ORIGINAL / オーダーメイド" : "Q-CUBE ORIGINAL";
   const optionsLabel = lang === "jp" ? "CUSTOM OPTIONS / カスタム項目" : "CUSTOM OPTIONS";
   const usecasesLabel = lang === "jp" ? "USE CASES / 活用シーン" : "USE CASES";
@@ -232,6 +233,9 @@ function ProductOriginal({ lang, product }) {
           ))}
         </div>
         {o.note && <p className="qc-pricing-note mono" data-reveal>{o.note}</p>}
+        {showTrademark && TrademarkNoticeComponent ? (
+          <TrademarkNoticeComponent lang={lang} variant="product" />
+        ) : null}
 
         <div className="qc-original-cta" data-reveal>
           <h3 className="qc-original-cta-title serif">{o.cta}</h3>
@@ -643,6 +647,7 @@ function AppProduct() {
 
   const hasRichContent = !!product.detail?.concept;
   const isArtPanel = product.id === "art-panel";
+  const shouldShowQrTrademark = product.id === "q-cube";
 
   return (
     <>
@@ -674,7 +679,7 @@ function AppProduct() {
               <ProductFeatures lang={lang} product={product} />
               <ProductEffects lang={lang} product={product} />
               <ProductSpecs lang={lang} product={product} />
-              <ProductOriginal lang={lang} product={product} />
+              <ProductOriginal lang={lang} product={product} showTrademark={shouldShowQrTrademark} />
             </>
           ) : (
             <>
